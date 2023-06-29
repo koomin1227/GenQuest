@@ -1,5 +1,9 @@
 package com.example.gen_quest.service;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -11,15 +15,26 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.UUID;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 
-public class OcrTest {
+public class OcrService {
 
-    public static void main(String arg[]) {
+    public String parse_text(JSONArray field){
+        String res = "";
+        JSONObject word;
+        int field_len = field.size();
+        for(int i=0;i<field_len;i++){
+            word = (JSONObject) field.get(i);
+            res = res + word.get("inferText").toString() + " ";
+            if ((boolean)word.get("lineBreak") == true)
+                res = res + "\n";
+        }
+        return res;
+    }
+
+    public JSONArray request(String imageFile) {
         String apiURL = "https://z2nh2vrzxc.apigw.ntruss.com/custom/v1/23377/4bf95343d7cdb272f089e07b714264b3c2da5ad5922d02c4d83f35918ae06688/general";
         String secretKey = "YnhWaXF3SmNGbnVSbWdXbWd6blJCT1pPY0F6QmxQQ3A=";
-        String imageFile = "/Users/koomin/Desktop/스크린샷 2023-06-28 오후 11.00.59.png";
+//        String imageFile = "/Users/koomin/Desktop/스크린샷 2023-06-28 오후 11.00.59.png";
 
         try {
             URL url = new URL(apiURL);
@@ -65,12 +80,19 @@ public class OcrTest {
                 response.append(inputLine);
             }
             br.close();
+            String res = response.toString();
+            JSONParser jsonParser = new JSONParser();
+            Object obj = jsonParser.parse(res);
+            JSONObject jobj = (JSONObject) obj;
+            JSONArray field = (JSONArray) jobj.get("images");
+            field = ((JSONArray)((JSONObject)field.get(0)).get("fields"));
+
             System.out.println(response);
-//            return response.toString();
+            return field;
         } catch (Exception e) {
             System.out.println(e);
         }
-//        return "fail";
+        return new JSONArray();
     }
 
     private static void writeMultiPart(OutputStream out, String jsonMessage, File file, String boundary) throws
