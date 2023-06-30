@@ -14,7 +14,7 @@ public class clovaTest {
 //        gptService.createGptService();
 //        String ans = gptService.createChatCompletion(test,"user");
 //        System.out.println(ans);
-        String ans = gptService.solve_problem("/Users/koomin/Desktop/스크린샷 2023-06-29 오후 9.40.19.png");
+        String ans = ocrService.image2text("/Users/koomin/구민/coding/Project/gen_quest/src/main/resources/static/images/social_3.png");
         System.out.println(ans);
     }
 }

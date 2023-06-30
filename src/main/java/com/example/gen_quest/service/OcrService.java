@@ -17,7 +17,11 @@ import java.util.UUID;
 
 
 public class OcrService {
-
+    public String image2text(String imageFile){
+        JSONArray field = request(imageFile);
+        String text = parse_text(field);
+        return text;
+    }
     public String parse_text(JSONArray field){
         String res = "";
         JSONObject word;

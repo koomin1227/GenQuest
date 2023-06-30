@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="greeting">
+                <div class="text_box">
+                    <p class="greeting_text">시작하기 전</p>
+                    <p class="greeting_text">정보를 입력해주세요!</p>
+                </div>
+            </div>
+            <form name="profile" method="post" action="/login">
+                <div class="name_input" id="name">
+                    <p class="info">이름</p>
+                    <input type="text" class="input_text" placeholder="이름을 입력해주세요." name="name">
+                    <button class="next" onclick="shownext('#school')" type="button">다음</button>
+                </div>
+                <div class="name_input" id="school">
+                    <p class="info">재학중인 학교의 이름을 입력해주세요.</p>
+                    <input type="text" class="input_text" placeholder="학교를 입력해주세요." name="school">
+                    <button class="next" onclick="shownext('#grade')" type="button">다음</button>
+                </div>
+                <div class="name_input" id="grade">
+                    <p class="info">본인의 학년을 선택해주세요.</p>
+                    <input type="text" class="input_text" placeholder="학년을 입력해주세요." name="grade">
+                    <button class="next" onclick="shownext('#submit')" type="button">다음</button>
+                </div>
+                <div class="name_input" id="submit">
+                    <button class="next" type="submit">제출</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script>
+        function shownext(next){
+            document.querySelector('#name').style.display='none';
+            document.querySelector('#school').style.display='none';
+            document.querySelector('#grade').style.display='none';
+            document.querySelector(next).style.display='block';
+        }
+    </script>
+</body>
+</html>

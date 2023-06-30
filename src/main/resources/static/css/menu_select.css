@@ -1,0 +1,46 @@
+*{
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin:0px;
+    padding:0px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.main{
+    width: 100%;
+    height: 844px;
+}
+
+.greeting{
+    width: 100%;
+    height: 120px;
+    /* background-color: aqua; */
+    background-color: rgb(62, 102, 216);
+    padding-top: 150px;
+}
+.text_box{
+    /* margin-top: 100px; */
+}
+.greeting_text{
+    padding-left: 30px;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+}
+
+.menu{
+    width: 390px;
+
+}
+
+.select{
+    margin-top: 150px;
+    width: 200px;
+    height: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: larger;
+    font-weight: 600;
+}

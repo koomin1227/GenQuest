@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <link rel="stylesheet" type="text/css" href="css/picture_sub.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="picture" th:style="${image_path}"></div>
+            <p class="sub_head">과목</p>
+            <form action="/select_info" method="post">
+                <select class="sel" name="subject">
+                    <option value="korean">국어</option>
+                    <option value="math">수학</option>
+                    <option value="english">영어</option>
+                    <option value="society">과학</option>
+                    <option value="science">사회</option>
+                </select>
+                <p class="sub_head">단원</p>
+                <select class="sel" name="section">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
+                <button class="submit" type="submit">질문</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

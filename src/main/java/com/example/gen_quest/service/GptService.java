@@ -34,12 +34,9 @@ public class GptService {
         return service.createChatCompletion(chatCompletionRequest).getChoices().get(0).getMessage().getContent();
     }
 
-    public String solve_problem(String image_path){
-        OcrService ocrService = new OcrService();
-        JSONArray field = ocrService.request(image_path);
-        String text = ocrService.parse_text(field);
+    public String solve_problem(String problem){
         String prompt = "다음 문제를 풀고 해설을 해줘 : ";
         createGptService();
-        return createChatCompletion(prompt + text, "user");
+        return createChatCompletion(prompt + problem, "user");
     }
 }
