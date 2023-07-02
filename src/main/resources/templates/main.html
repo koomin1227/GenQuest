@@ -5,9 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
     <link rel="stylesheet" type="text/css" href="css/main.css">
+
     <title>Document</title>
 </head>
 <body>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="/JS/gpt_ajax.js"></script>
     <div class="container">
         <div class="main">
             <div class="ocr_text">
@@ -15,10 +18,16 @@
             </div>
             <p>답변</p>
             <div class="gpt_res">
-                <p th:text="${gpt}">gpt</p>
+                <p th:text="${gpt}" id = 'gpt_res'>gpt</p>
             </div>
         </div>
     </div>
+    <script>
+        window.onload=function(){
+            gpt_ajax();
+        }
+    </script>
 
 </body>
+
 </html>

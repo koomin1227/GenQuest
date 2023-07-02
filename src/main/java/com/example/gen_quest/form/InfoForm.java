@@ -1,4 +1,4 @@
-package com.example.gen_quest.controller;
+package com.example.gen_quest.form;
 
 public class InfoForm {
     private String subject;

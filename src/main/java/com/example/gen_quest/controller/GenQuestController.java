@@ -1,12 +1,16 @@
 package com.example.gen_quest.controller;
 
+import com.example.gen_quest.form.ImageForm;
+import com.example.gen_quest.form.InfoForm;
+import com.example.gen_quest.form.MemberForm;
 import com.example.gen_quest.service.GptService;
 import com.example.gen_quest.service.OcrService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @Controller
 public class GenQuestController {
@@ -14,8 +18,11 @@ public class GenQuestController {
     String school;
     String grade;
     String image;
+    String image_path;
     String subject;
     String section;
+
+    String ocr;
     @GetMapping("/index")
     public String home() {
         return "index";
@@ -49,6 +56,7 @@ public class GenQuestController {
     @PostMapping("/image_select")
     public String image_select(@NotNull ImageForm form){
         image = form.getImage();
+        image_path = "/Users/koomin/구민/coding/Project/gen_quest/src/main/resources/static" + form.getImage();
         System.out.println(image);
         return "redirect:/picture_sub";
     }
@@ -63,13 +71,22 @@ public class GenQuestController {
 
     @GetMapping("/main")
     public String main(Model model) {
-        GptService gptService = new GptService();
         OcrService ocrService = new OcrService();
-        String ocr = ocrService.image2text("/Users/koomin/구민/coding/Project/gen_quest/src/main/resources/static"+image);
-        String gpt = gptService.solve_problem(ocr);
+        ocr = ocrService.image2text(image_path);
         model.addAttribute("ocr",ocr);
-        model.addAttribute("gpt",gpt);
         return "main";
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/quest",method = RequestMethod.POST)
+    public HashMap<String, Object> chatQna(@RequestBody HashMap<String, Object> map){
+        GptService gptService = new GptService();
+        System.out.println(map.get("success"));
+        String response = gptService.solve_problem(ocr);
+        System.out.print(response);
+        map.put("response",response);
+        return map;
+    }
+
 
 }
