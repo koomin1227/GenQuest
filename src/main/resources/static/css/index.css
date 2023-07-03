@@ -50,6 +50,18 @@
     font-size: 20px;
 }
 
+.sel{
+    display: block;
+    margin: 10px auto;
+    width: 314px;
+    height: 44px;
+    border: solid 2px black;
+    border-radius: 25px;
+    font-size: larger;
+    text-align: center;
+    background-color: white;
+}
+
 .info{
     margin-left: 45px;
     margin-bottom: 20px;

@@ -1,0 +1,67 @@
+*{
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin:0px;
+    padding:0px;
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.main{
+    width: 390px;
+    height: 844px;
+}
+
+.sub_head{
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+
+    /* background-color: rgb(62, 102, 216); */
+}
+
+.gpt_text{
+    width:370px;
+    height: 300px;
+    /* border: solid 1px black; */
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    overflow: scroll;
+}
+
+.qna_res{
+    width: 370px;
+    height: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: scroll;
+}
+
+.qna{
+    width: 330px;
+    height: 30px;
+    margin-left: 10px;
+}
+
+.request{
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(0, 157, 255);
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: auto;
+}
+
+.response{
+    width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(177, 177, 177);
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 15px;
+    height: auto;
+}

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+    <link rel="stylesheet" href="css/subject_select.css">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="/JS/section_ajax.js"></script>
+    <div class="container">
+        <div class="main">
+            <div class="greeting">
+                <div class="text_box">
+                    <p class="greeting_text">직업하고 싶은</p>
+                    <p class="greeting_text">과목과 단원을 선택해주세요!</p>
+                </div>
+            </div>
+            <form name="subject_choice" method="post" action="/subject">
+                <div class="section_choice">
+                    <p class="sub_head">과목</p>
+                    <select class="sel" name="subject" onchange="section_ajax()" id="subject">
+                        <option value="" selected disabled>--선택--</option>
+                        <option th:each="subject : ${subjects}" th:value="${subject}" th:text="${subject}">FAST</option>
+                    </select>
+                    <p class="sub_head">단원</p>
+                    <select class="sel" name="section" id="section_sel">
+                        <option value="" selected disabled>--선택--</option>  
+                    </select>
+                    <button class="submit" type="submit">다음</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -13,6 +13,7 @@ import java.util.UUID;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.junit.jupiter.api.Test;
 
 public class OcrTest {
 
@@ -106,5 +107,14 @@ public class OcrTest {
             out.write(("--" + boundary + "--\r\n").getBytes("UTF-8"));
         }
         out.flush();
+    }
+    @Test
+    public void ss(){
+        OcrService ocrService = new OcrService();
+        GptService gptService = new GptService();
+        gptService.createGptService();
+        String ocr = ocrService.image2text("/Users/koomin/구민/coding/Project/gen_quest/src/main/resources/static/images/social_5.png");
+        String response = gptService.createChatCompletion("'" + ocr + "' 이 내용을 기반으로 주제를 파악하여, '이것은 {주제}에 관한 내용이군요! 질문이 무엇인가요?' 라는 메시지를 출력해줘","user");
+        System.out.print(response);
     }
 }

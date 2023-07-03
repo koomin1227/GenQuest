@@ -4,6 +4,15 @@ public class MemberForm {
     private String name;
     private String school;
     private String grade;
+    private String school_kind;
+
+    public String getSchool_kind() {
+        return school_kind;
+    }
+
+    public void setSchool_kind(String school_kind) {
+        this.school_kind = school_kind;
+    }
 
     public String getName() {
         return name;
