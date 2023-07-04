@@ -1,6 +1,5 @@
 package com.example.gen_quest.repository;
 
-import org.json.simple.JSONArray;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,5 +58,31 @@ public class SubjectInfoRepository {
             list.add("test");
         }
         return list;
+    }
+    public String findPrompt(String school, String grade, String subject, String section){
+        String prompt = "";
+        if (school.equals("high")){
+            if (grade.equals("1")){
+                if (subject.equals("한국사")){
+                    if(section.equals("1")){
+                        prompt = "고려는 왕건이 만들었다.";
+                    }
+                }
+                else{
+                    prompt = "no";
+                }
+            }
+            else {
+                prompt = "no";
+            }
+
+        }
+        else if (school.equals("middle")) {
+            prompt = "no";
+        }
+        else if (school.equals("elementary")){
+            prompt = "no";
+        }
+        return prompt;
     }
 }

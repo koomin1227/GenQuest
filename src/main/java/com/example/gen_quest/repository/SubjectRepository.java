@@ -13,6 +13,11 @@ public class SubjectRepository {
         SubjectInfoRepository subjectInfoRepository = new SubjectInfoRepository();
         return subjectInfoRepository.findSection(school,grade,subject);
     }
-
+    public String find_prompt(String school, String grade, String subject, String section){
+        SubjectInfoRepository subjectInfoRepository = new SubjectInfoRepository();
+        String prompt = "";
+        prompt = subjectInfoRepository.findPrompt(school,grade,subject,section);
+        return prompt;
+    }
 
 }

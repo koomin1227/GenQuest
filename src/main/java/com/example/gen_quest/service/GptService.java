@@ -1,5 +1,7 @@
 package com.example.gen_quest.service;
 
+import com.example.gen_quest.form.ProfileForm;
+import com.example.gen_quest.repository.SubjectRepository;
 import com.theokanning.openai.OpenAiService;
 import com.theokanning.openai.completion.CompletionRequest;
 import com.theokanning.openai.completion.chat.ChatCompletionChoice;
@@ -34,8 +36,10 @@ public class GptService {
         return service.createChatCompletion(chatCompletionRequest).getChoices().get(0).getMessage().getContent();
     }
 
-    public String solve_problem(String problem){
+    public String solve_problem(String problem, ProfileForm profile){
+        SubjectRepository subjectRepository = new SubjectRepository();
         String prompt = "다음 문제를 풀고 해설을 해줘 : ";
+        String tmp = subjectRepository.find_prompt(profile.school_kind,profile.grade, profile.subject, profile.section);
         createGptService();
         String response =createChatCompletion(prompt + problem, "user");
         response = response.replaceAll("\n", "<br>");

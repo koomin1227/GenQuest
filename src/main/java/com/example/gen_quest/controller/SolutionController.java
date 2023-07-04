@@ -41,7 +41,7 @@ public class SolutionController {
         gptService = new GptService();
 
         profileForm.ocr = ocrService.image2text(profileForm.image_path);
-        String response = gptService.solve_problem(profileForm.ocr);
+        String response = gptService.solve_problem(profileForm.ocr,profileForm);
 
         System.out.print(response);
         map.put("response",response);
