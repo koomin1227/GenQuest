@@ -40,8 +40,7 @@ public class SolutionController {
         OcrService ocrService = new OcrService();
         gptService = new GptService();
 
-//        profileForm.ocr = ocrService.image2text(profileForm.image_path);
-        profileForm.ocr = ocrService.image2text(profileForm.image);
+        profileForm.ocr = ocrService.image2text(profileForm.image_path);
         String response = gptService.solve_problem(profileForm.ocr,profileForm);
 
         System.out.print(response);

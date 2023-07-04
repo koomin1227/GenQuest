@@ -18,16 +18,12 @@ import java.util.UUID;
 
 
 public class OcrService {
+
     public String image2text(String imageFile){
-        SubjectRepository subjectRepository = new SubjectRepository();
-        String text = subjectRepository.find_ocr(imageFile);
+        JSONArray field = request(imageFile);
+        String text = parse_text(field);
         return text;
     }
-//    public String image2text(String imageFile){
-//        JSONArray field = request(imageFile);
-//        String text = parse_text(field);
-//        return text;
-//    }
     public String parse_text(JSONArray field){
         String res = "";
         JSONObject word;
@@ -42,9 +38,9 @@ public class OcrService {
     }
 
     public JSONArray request(String imageFile) {
-        String apiURL = "https://z2nh2vrzxc.apigw.ntruss.com/custom/v1/23377/4bf95343d7cdb272f089e07b714264b3c2da5ad5922d02c4d83f35918ae06688/general";
-        String secretKey = "YnhWaXF3SmNGbnVSbWdXbWd6blJCT1pPY0F6QmxQQ3A=";
-//        String imageFile = "/Users/koomin/Desktop/스크린샷 2023-06-28 오후 11.00.59.png";
+        String apiURL = "";
+        String secretKey = "";
+
 
         try {
             URL url = new URL(apiURL);

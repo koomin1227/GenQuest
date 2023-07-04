@@ -39,8 +39,7 @@ public class QuestionController {
         OcrService ocrService = new OcrService();
         gptService = new GptService();
         gptService.createGptService();
-//        profileForm.ocr = ocrService.image2text(profileForm.image_path);
-        profileForm.ocr = ocrService.image2text(profileForm.image);
+        profileForm.ocr = ocrService.image2text(profileForm.image_path);
         String response = gptService.createChatCompletion("'" + profileForm.ocr + "' 이 내용을 기반으로 주제를 파악하여, '이것은 {주제}에 관한 내용이군요! 질문이 무엇인가요?' 라는 메시지를 출력해줘","user");
         String tmp = subjectRepository.find_prompt(profileForm.school_kind,profileForm.grade, profileForm.subject, profileForm.section);
         String prompt = "위 내용을 학습한 학습자가 앞으로 질문을 할거야. 위 내용을 참고해서 해설을 작성해줘. 단, 위 내용과 관련이 없는 내용일수도 있어. 답변은 위에 학습을 했을 내용에 대해서는 언급하지 말고, 주어진 질문과 답변 대해서만 언급을 해줘.";

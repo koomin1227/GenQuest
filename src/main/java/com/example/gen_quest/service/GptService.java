@@ -20,7 +20,7 @@ public class GptService {
     private OcrService ocrService;
     List<ChatMessage> messages = new ArrayList<>();
     public void createGptService(){
-        service = new OpenAiService("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",1800);
+        service = new OpenAiService("",1800);
         chatCompletionRequest = ChatCompletionRequest.builder()
                 .messages(messages)
                 .model("gpt-3.5-turbo")
