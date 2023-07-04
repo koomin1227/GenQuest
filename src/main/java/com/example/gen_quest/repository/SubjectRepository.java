@@ -20,4 +20,10 @@ public class SubjectRepository {
         return prompt;
     }
 
+    public String find_ocr(String image){
+        SubjectInfoRepository subjectInfoRepository = new SubjectInfoRepository();
+        String ocr = subjectInfoRepository.findOcr(image);
+        return ocr;
+    }
+
 }

@@ -38,10 +38,11 @@ public class GptService {
 
     public String solve_problem(String problem, ProfileForm profile){
         SubjectRepository subjectRepository = new SubjectRepository();
-        String prompt = "다음 문제를 풀고 해설을 해줘 : ";
+        String prompt = "위 내용은 질문자가 학습을 했을 내용이야. 문제 <{"+ problem +"}>를 위 내용을 참고해서 해설을 작성해줘. 단, 위 내용과 관련이 없는 내용일수도 있어. 답변은 위에 학습을 했을 내용에 대해서는 언급하지 말고, 주어진 문제와 해설에 대해서만 언급을 해줘.";
         String tmp = subjectRepository.find_prompt(profile.school_kind,profile.grade, profile.subject, profile.section);
         createGptService();
-        String response =createChatCompletion(prompt + problem, "user");
+        String response =createChatCompletion(tmp + prompt, "user");
+        System.out.print(tmp + prompt);
         response = response.replaceAll("\n", "<br>");
         return response;
     }

@@ -1,5 +1,6 @@
 package com.example.gen_quest.service;
 
+import com.example.gen_quest.repository.SubjectRepository;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,10 +19,15 @@ import java.util.UUID;
 
 public class OcrService {
     public String image2text(String imageFile){
-        JSONArray field = request(imageFile);
-        String text = parse_text(field);
+        SubjectRepository subjectRepository = new SubjectRepository();
+        String text = subjectRepository.find_ocr(imageFile);
         return text;
     }
+//    public String image2text(String imageFile){
+//        JSONArray field = request(imageFile);
+//        String text = parse_text(field);
+//        return text;
+//    }
     public String parse_text(JSONArray field){
         String res = "";
         JSONObject word;
@@ -89,7 +95,7 @@ public class OcrService {
             JSONParser jsonParser = new JSONParser();
             Object obj = jsonParser.parse(res);
             JSONObject jobj = (JSONObject) obj;
-            JSONArray field = (JSONArray) jobj.get("image");
+            JSONArray field = (JSONArray) jobj.get("images");
             field = ((JSONArray)((JSONObject)field.get(0)).get("fields"));
 
             System.out.println(response);
