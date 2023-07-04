@@ -94,6 +94,7 @@ public class OcrService {
             System.out.println(response);
             return field;
         } catch (Exception e) {
+            System.out.println("오류 발생 ocrService에서");
             System.out.println(e);
         }
         return new JSONArray();
