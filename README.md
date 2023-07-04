@@ -15,14 +15,3 @@ Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
 
 https://arxiv.org/abs/2201.11903
 
-Large Language Models are Zero-Shot Reasoners
-
-https://arxiv.org/abs/2205.11916
-
-Generated Knowledge Prompting for Commonsense Reasoning
-
-https://arxiv.org/abs/2110.08387
-
-Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
-
-https://arxiv.org/abs/2201.11903
