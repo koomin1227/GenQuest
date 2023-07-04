@@ -85,10 +85,11 @@ public class OcrService {
             }
             br.close();
             String res = response.toString();
+            System.out.println(res);
             JSONParser jsonParser = new JSONParser();
             Object obj = jsonParser.parse(res);
             JSONObject jobj = (JSONObject) obj;
-            JSONArray field = (JSONArray) jobj.get("images");
+            JSONArray field = (JSONArray) jobj.get("image");
             field = ((JSONArray)((JSONObject)field.get(0)).get("fields"));
 
             System.out.println(response);
