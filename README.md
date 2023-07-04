@@ -15,3 +15,4 @@ Chain-of-Thought Prompting Elicits Reasoning in Large Language Models
 
 https://arxiv.org/abs/2201.11903
 
+![Uploading ezgif.com-video-to-gif-2.gif…]()
