@@ -16,8 +16,16 @@ import java.util.UUID;
 
 public class OcrService {
 
-    public String image2text(String imageFile){
-        JSONArray field = request(imageFile);
+    public String image2text(String imageFile) throws IOException {
+
+        JSONArray field = request(getFile(imageFile));
+        String text = parse_text(field);
+        return text;
+    }
+
+    public String image2text_upload(File file) throws IOException {
+
+        JSONArray field = request(file);
         String text = parse_text(field);
         return text;
     }
@@ -33,10 +41,21 @@ public class OcrService {
         }
         return res;
     }
+    public File getFile(String imageFile) throws IOException {
+        ClassPathResource resource = new ClassPathResource(imageFile);
+        InputStream inputStream = new ClassPathResource(imageFile).getInputStream();
+        File file = File.createTempFile("test", ".PNG");
+        try {
+            FileUtils.copyInputStreamToFile(inputStream, file);
+        } finally {
+            IOUtils.closeQuietly(inputStream);
+        }
+        return file;
+    }
 
-    public JSONArray request(String imageFile) {
-        String apiURL = "";
-        String secretKey = "";
+    public JSONArray request(File file) {
+        String apiURL = "https://z2nh2vrzxc.apigw.ntruss.com/custom/v1/23377/4bf95343d7cdb272f089e07b714264b3c2da5ad5922d02c4d83f35918ae06688/general";
+        String secretKey = "YnhWaXF3SmNGbnVSbWdXbWd6blJCT1pPY0F6QmxQQ3A=";
 
 
         try {
@@ -66,15 +85,6 @@ public class OcrService {
             con.connect();
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             long start = System.currentTimeMillis();
-            ClassPathResource resource = new ClassPathResource(imageFile);
-            InputStream inputStream = new ClassPathResource(imageFile).getInputStream();
-            File file = File.createTempFile("test", ".PNG");
-            try {
-                FileUtils.copyInputStreamToFile(inputStream, file);
-            } finally {
-                IOUtils.closeQuietly(inputStream);
-            }
-//            File file = resource.getFile();
             writeMultiPart(wr, postParams, file, boundary);
             wr.close();
 

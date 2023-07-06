@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 @Controller
@@ -59,7 +60,7 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(Model model) {
+    public String main(Model model) throws IOException {
         OcrService ocrService = new OcrService();
         profileForm.ocr = ocrService.image2text(profileForm.image_path);
         model.addAttribute("ocr",profileForm.ocr);

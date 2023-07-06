@@ -109,7 +109,7 @@ public class OcrTest {
         out.flush();
     }
     @Test
-    public void ss(){
+    public void ss() throws IOException {
         OcrService ocrService = new OcrService();
         GptService gptService = new GptService();
         gptService.createGptService();

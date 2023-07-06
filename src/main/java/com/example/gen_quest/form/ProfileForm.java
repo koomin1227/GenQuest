@@ -1,5 +1,7 @@
 package com.example.gen_quest.form;
 
+import java.io.File;
+
 public class ProfileForm {
     public String name;
     public String school;
@@ -10,6 +12,7 @@ public class ProfileForm {
     public String subject;
     public String section;
     public String ocr;
+    public File image_file;
 
     private static ProfileForm instance;
 

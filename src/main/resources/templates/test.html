@@ -9,7 +9,10 @@
     <title>Document</title>
 </head>
 <body>
-    <input type="file" multiple="multiple" name="files">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" multiple="multiple" name="files">
+        <button type="submit">확인</button>
+    </form>
 
 </body>
 
