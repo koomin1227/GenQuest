@@ -6,8 +6,8 @@ import com.example.gen_quest.repository.SubjectRepository;
 import com.example.gen_quest.service.GptService;
 import com.example.gen_quest.service.OcrService;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -25,7 +25,6 @@ public class SolutionController {
     @PostMapping("/image_select_sp")
     public String image_select(@NotNull ImageForm form){
         profileForm.image = form.getImage();
-        profileForm.image_path = "/Users/koomin/구민/coding/Project/gen_quest/src/main/resources/static" + form.getImage();
         System.out.println(profileForm.image);
         return "redirect:/solution";
     }
@@ -40,7 +39,7 @@ public class SolutionController {
         OcrService ocrService = new OcrService();
         gptService = new GptService();
 
-        profileForm.ocr = ocrService.image2text(profileForm.image_path);
+        profileForm.ocr = ocrService.image2text(profileForm.image);
         String response = gptService.solve_problem(profileForm.ocr,profileForm);
 
         System.out.print(response);

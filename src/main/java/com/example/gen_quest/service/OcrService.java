@@ -1,17 +1,14 @@
 package com.example.gen_quest.service;
 
 import com.example.gen_quest.repository.SubjectRepository;
+import org.apache.commons.io.FileUtils;
+import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import org.springframework.core.io.ClassPathResource;
 
-import java.io.BufferedReader;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.UUID;
@@ -69,7 +66,15 @@ public class OcrService {
             con.connect();
             DataOutputStream wr = new DataOutputStream(con.getOutputStream());
             long start = System.currentTimeMillis();
-            File file = new File(imageFile);
+            ClassPathResource resource = new ClassPathResource(imageFile);
+            InputStream inputStream = new ClassPathResource(imageFile).getInputStream();
+            File file = File.createTempFile("test", ".PNG");
+            try {
+                FileUtils.copyInputStreamToFile(inputStream, file);
+            } finally {
+                IOUtils.closeQuietly(inputStream);
+            }
+//            File file = resource.getFile();
             writeMultiPart(wr, postParams, file, boundary);
             wr.close();
 
